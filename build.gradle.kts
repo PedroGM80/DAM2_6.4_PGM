@@ -1,0 +1,31 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    kotlin("jvm") version "1.6.10-RC"
+    id("org.jetbrains.dokka") version "1.6.10"
+
+}
+
+group = "me.pedro"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    implementation("com.google.code.gson:gson:2.8.5") // GSON -> DataClass
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.20") // LOGGER
+    implementation("org.slf4j:slf4j-simple:1.7.32")
+    implementation("me.mattak:moment:0.0.4") // LOGGER
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+tasks.withType<KotlinCompile>() {
+    kotlinOptions.jvmTarget = "1.8"
+}
